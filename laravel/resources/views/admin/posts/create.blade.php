@@ -3,14 +3,14 @@
 @section('content')
 
 <div class="panel panel-default">
-<div class="container">
-<div class="row">
-<div class="col-lg-12">
+<div class="card-body">
+
     <div class="panel-heading"><h1 class="display-4">Create a new post</h1></div>
 
     <div class="panel-body">
-        <form action="/post/store" method=" post">
+        <form action="{{route('post.store')}}" method=" post">
             {{ csrf_field() }}
+            
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control">
@@ -29,11 +29,10 @@
             </div>
 
         </form>
-    </div>
-    </div>
+ 
+</div> </div>
 </div>
-</div>
-</div>
+
 
 
  
