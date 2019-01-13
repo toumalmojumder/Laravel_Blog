@@ -8,10 +8,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', [
-    'uses'=> 'HomeController@index',
-    'as' => 'home'
-]);
+
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
 
@@ -23,6 +20,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::get('/post/store', [
         'uses'=> 'PostController@store',
         'as' => 'post.store'
+    ]);
+
+    Route::get('/home', [
+        'uses'=> 'HomeController@index',
+        'as' => 'home'
     ]);
 
 });
