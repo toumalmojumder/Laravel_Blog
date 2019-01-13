@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}">
+
+
+
 </head>
 <body>
     <div id="app">
@@ -94,5 +97,14 @@
            </div>
         </main>
     </div>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{asset('js/toastr.min.js')}}"></script>
+<script>
+    @if(Session::has('success'))
+    toastr.success("{{Session::get('success')}}")
+    @endif
+    </script>
+    
 </body>
 </html>
