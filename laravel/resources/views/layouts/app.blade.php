@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -17,7 +17,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/toastr.min.css') }}">
+
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 
 
 
@@ -79,7 +82,7 @@
 
            <div class="container">
                <div class="row">
-                   
+
                 @if(Auth::check())
                     <div class="col-lg-4">
                         <ul class="list-group">
@@ -90,21 +93,44 @@
                         </ul>
                     </div>
                 @endif
-
-                    <div class="col-lg-8">@yield('content')</div>
+                    <div class="col-lg-8">@yield('content')
+                    </div>
                  </div>
                </div>
            </div>
         </main>
     </div>
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="{{asset('js/toastr.min.js')}}"></script>
-<script>
-    @if(Session::has('success'))
-    toastr.success("{{Session::get('success')}}")
-    @endif
+ <!--toastr css -->
+ <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <!-- toastr js -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!--<script>
+        @if(Session::has('message'))
+            var type="{{Session::get('alert-type','info')}}"
+
+            switch(type){
+                case 'info':
+                     toastr.info("{{ Session::get('message') }}");
+                     break;
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+                 case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ Session::get('message') }}");
+                    break;
+            }
+        @endif
+    </script>-->
+
+    <script>
+        @if(Session::has('success'))
+        toastr.success("{{Session::get('success')}}")
+        @endif
     </script>
-    
 </body>
 </html>

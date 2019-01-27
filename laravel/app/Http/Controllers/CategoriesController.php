@@ -41,16 +41,19 @@ class CategoriesController extends Controller
         $this->validate($request,[
             'name'=>'required'
         ]);
-        
+
         $category = new Category;
 
         $category->name = $request->name;
 
         $category->save();
 
-        Session::flash('success','You successfully created a Category.');
 
-        return redirect()->route('categories');
+        Session::flash('message','You successfully created a Category.');
+
+       // $notification = array( 'message' => 'You successfully created a Category.', 'alert-type' => 'success'   );
+
+        return redirect()->route('categories')->with($notification);
     }
 
     /**
