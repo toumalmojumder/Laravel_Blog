@@ -28,7 +28,6 @@
                 <label for="featured">Featured Image</label>
                 <input type="file" name="featured" class="form-control">
             </div>
-
             <div class="form-group">
                 <label for="category">Select a Category</label>
                 <select name="category_id" id="category" class="form-control">
@@ -39,9 +38,7 @@
                         </option>
                         @endforeach
                 </select>
-
             </div>
-
             <div class="form-group">
                 <label for="content">Content</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
@@ -49,13 +46,7 @@
             <div class="form-group">
               <div class="text-center"><button class="btn btn-success" type="submit">Store Post</button></div>
             </div>
-
         </form>
-
 </div> </div>
 </div>
-
-
-
-
 @stop

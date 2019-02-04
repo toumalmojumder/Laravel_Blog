@@ -51,9 +51,9 @@ class CategoriesController extends Controller
 
         Session::flash('message','You successfully created a Category.');
 
-        $notification = array( 'message' => 'You successfully created a Category.', 'alert-type' => 'success'   );
+        //$notification = array( 'message' => 'You successfully created a Category.', 'alert-type' => 'success'   );
 
-        return redirect()->route('categories')->with($notification);
+        return redirect()->route('category.create');
     }
 
     /**

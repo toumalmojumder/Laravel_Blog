@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Session;
+
 class PostController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -26,7 +27,16 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories=Category::all();
+if($categories->count()==0){
+Session::flash('info', 'You must create some categories before attemping to create a post.');
+//return redirect()->route('categories')->with($notification);
+return redirect()->route('category.create');
+}
+
         return view('admin.posts.create')->with('categories',Category::all());
+
+
     }
 
     /**
