@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
-
-
+//use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
+use Session;
 class PostController extends Controller
 {
     /**
@@ -36,7 +37,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
+
        $this->validate($request,[
            'title'=>'required|max:255',
            'featured'=>'required|image',
@@ -44,7 +45,25 @@ class PostController extends Controller
            'category_id'=>'required',
        ]);
 
-    }
+       $featured = $request->featured;
+
+$featured_new_name =  time().$featured->getClientOriginalName();
+
+$featured->move('uploads/posts',$featured_new_name);
+
+$post = Post::create([
+'title' => $request-> title,
+'content'=> $request->content,
+'featured'=>'uploads/posts'. $featured_new_name,
+'category_id'=>$request->category_id,
+'slug'=>str_slug($request->title)
+]);
+
+Session::flash('success','Post created Successfully.!');
+
+return redirect()->back();
+
+}
 
     /**
      * Display the specified resource.

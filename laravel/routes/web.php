@@ -16,8 +16,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=> 'PostController@create',
         'as' => 'post.create'
     ]);
-    
-    Route::get('/post/store', [
+
+    Route::post('/post/store', [
         'uses'=> 'PostController@store',
         'as' => 'post.store'
     ]);
@@ -31,7 +31,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=> 'CategoriesController@create',
         'as' => 'category.create'
     ]);
-    
+
     Route::get('/category/store', [
         'uses'=> 'CategoriesController@store',
         'as' => 'category.store'
