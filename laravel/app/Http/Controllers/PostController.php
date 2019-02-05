@@ -64,7 +64,7 @@ $featured->move('uploads/posts',$featured_new_name);
 $post = Post::create([
 'title' => $request-> title,
 'content'=> $request->content,
-'featured'=>'uploads/posts'. $featured_new_name,
+'featured'=>'uploads/posts/'. $featured_new_name,
 'category_id'=>$request->category_id,
 'slug'=>str_slug($request->title)
 ]);
@@ -117,6 +117,20 @@ return redirect()->back();
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        Session::flash('success','The post was just trashed.');
+        return redirect()->back();
+    }
+
+    public function trashed(){
+        $posts = Post::onlyTrashed()->get();
+         return view('admin.posts.trash')->with('posts',$posts);
+    }
+    public function kill($id){
+        $post = Post::withTrashed()->where('id',$id)->first();
+        $post-> forceDelete();
+        Session::flash('success','The post permanently deleted.');
+        return redirect()->back();
     }
 }
