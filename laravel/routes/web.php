@@ -69,6 +69,18 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=> 'PostController@kill',
         'as' => 'post.kill'
     ]);
+    Route::get('/post/restore/{id}', [
+        'uses'=> 'PostController@restore',
+        'as' => 'post.restore'
+    ]);
+    Route::get('/post/edit/{id}', [
+        'uses'=> 'PostController@edit',
+        'as' => 'post.edit'
+    ]);
+    Route::post('/post/update/{id}', [
+        'uses'=> 'PostController@update',
+        'as' => 'post.update'
+    ]);
 
 
 });
