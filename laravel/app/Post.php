@@ -19,4 +19,7 @@ protected $dates = ['deleted_at'];
     public function category(){
         return $this ->hasMany('App\Categoryt');
     }
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 }
